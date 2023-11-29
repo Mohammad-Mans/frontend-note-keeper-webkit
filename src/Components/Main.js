@@ -3,6 +3,8 @@ import "./Main.css";
 import AddNotesField from "./AddNotesField";
 import Notes from "./Notes";
 import api from "../api/notes";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Main({ filter }) {
   const [notes, setNotes] = useState([]);
@@ -30,6 +32,9 @@ function Main({ filter }) {
       const response = await api.get("/notes");
       setNotes(response.data);
     } catch (error) {
+      toast.error("An error happened !", {
+        position: toast.POSITION.TOP_LEFT,
+      });
       if (error.response) {
         //we got a response from the backend but it is not in the 200 range
         console.log(error.response.data);
@@ -44,9 +49,15 @@ function Main({ filter }) {
 
   const handleAddNote = async (newNote) => {
     try {
-      await api.post("/notes", newNote);
+      await api.post("/note", newNote);
+      toast.success("Note added !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       fetchData();
     } catch (error) {
+      toast.error("An error happened !", {
+        position: toast.POSITION.TOP_LEFT,
+      });
       console.error("Error:", error);
     }
   };
@@ -54,8 +65,14 @@ function Main({ filter }) {
   const handleDeleteNote = async (noteId) => {
     try {
       await api.delete(`/notes/${noteId}`);
+      toast.success("Note removed !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       fetchData();
     } catch (error) {
+      toast.error("An error happened !", {
+        position: toast.POSITION.TOP_LEFT,
+      });
       console.error("Error:", error);
     }
   };
@@ -63,8 +80,14 @@ function Main({ filter }) {
   const handleUpdateNote = async (noteId, updatedNote) => {
     try {
       await api.put(`/notes/${noteId}`, updatedNote);
+      toast.success("Note updated !", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       fetchData();
     } catch (error) {
+      toast.error("An error happened !", {
+        position: toast.POSITION.TOP_LEFT,
+      });
       console.error("Error:", error);
     }
   };
@@ -77,6 +100,7 @@ function Main({ filter }) {
         onDeleteNote={handleDeleteNote}
         onUpdateNote={handleUpdateNote}
       />
+      <ToastContainer />
     </main>
   );
 }
