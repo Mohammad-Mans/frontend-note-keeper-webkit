@@ -1,0 +1,59 @@
+.add-notes-field {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  background-color: var(--note-background-dark);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 1);
+
+  > .input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  > .note-title {
+    padding: 15px 15px 5px;
+    font-size: 18px;
+  }
+
+  > .note-content {
+    padding: 15px;
+    font-size: 15px;
+  }
+
+  > .buttons {
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end;
+
+    > .add,
+    > .close {
+      background-color: transparent;
+      border: none;
+      padding: 5px 15px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    > .add {
+      background-color: var(--main-color);
+      border: 1px solid var(--main-color);
+      border-radius: 30px;
+      color: var(--text-color);
+    }
+
+    > .close {
+      margin-left: 10px;
+    }
+
+    > .add:hover {
+      background-color: transparent;
+      color: var(--main-color);
+    }
+
+    > .close:hover {
+      color: var(--main-color);
+    }
+  }
+}

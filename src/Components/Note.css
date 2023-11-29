@@ -1,0 +1,63 @@
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--note-background-dark);
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 1);
+  height: fit-content;
+  cursor: pointer;
+
+  .pin-icon{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px 5px 0 0;
+    > .MuiSvgIcon-root {
+      transform: rotate(45deg);
+      color: var(--main-color);
+    }
+    
+  }
+
+  > .title {
+    margin: 0 10px 5px;
+  }
+
+  > .content {
+    margin: 0 10px 15px;
+  }
+
+  > .date {
+    background-color: var(--main-color);
+    padding: 5px 7px;
+    margin: 0 5px;
+    font-size: 12px;
+    border-radius: 30px;
+    color: var(--text-color);
+  }
+  > .trash-icon {
+    padding-bottom: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    > .MuiSvgIcon-root {
+      color: var(--background-dark);
+      font-size: 30px;
+      opacity: 0;
+      transition: 0.5s ease;
+    }
+  }
+}
+
+.note:hover {
+  > .trash-icon {
+    > .MuiSvgIcon-root {
+      opacity: 2;
+    }
+
+    > .MuiSvgIcon-root:hover {
+      opacity: 0.5;
+    }
+  }
+}
