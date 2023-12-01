@@ -8,15 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { CircularProgress } from "@mui/material";
 import ApiContext from "../context/ApiContext";
 
-function Main({ filter }) {
+function Main() {
   const [notes, setNotes] = useState([]);
-  const [filteredNotes, setFilteredNotes] = useState(null);
-
-  const { data, catchedError, resetError, isLoading } = useContext(ApiContext);
+  const { fetchedNotes, filteredNotes, catchedError, resetError, isLoading } =
+    useContext(ApiContext);
 
   useEffect(() => {
-    setNotes(data);
-  }, [data]);
+    setNotes(fetchedNotes);
+  }, [fetchedNotes]);
 
   useEffect(() => {
     catchedError &&
@@ -26,24 +25,9 @@ function Main({ filter }) {
     resetError();
   }, [catchedError, resetError]);
 
-  useEffect(() => {
-    if (filter.length > 0) {
-      const filtered = notes.filter(
-        (note) =>
-          note.title.toLowerCase().includes(filter.toLowerCase()) ||
-          note.content.toLowerCase().includes(filter.toLowerCase())
-      );
-      setFilteredNotes(filtered);
-    } else {
-      setFilteredNotes(null);
-    }
-  }, [filter, notes]);
-
-  function handleAddNote(newNote) {}
-
   return (
     <main className={`main ${isLoading ? "loading" : ""}`}>
-      <AddNotesField onAddNote={handleAddNote} />
+      <AddNotesField />
       {isLoading && <CircularProgress className="loading" />}
 
       {!isLoading && !catchedError && (

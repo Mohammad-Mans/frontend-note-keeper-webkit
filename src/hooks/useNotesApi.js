@@ -2,23 +2,23 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const useNotesApi = (serverUrl) => {
-  const [data, setData] = useState([]);
+  const [fetchedNotes, setFetchedNotes] = useState([]);
   const [catchedError, setCatchedError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchData(serverUrl);
+    fetchNotes(serverUrl);
   }, [serverUrl]);
 
-  const fetchData = async (url) => {
+  const fetchNotes = async (url) => {
     setIsLoading(true);
     try {
       const response = await axios.get(url);
-      setData(response.data);
+      setFetchedNotes(response.data);
       setCatchedError(null);
     } catch (err) {
       setCatchedError(err.message);
-      setData([]);
+      setFetchedNotes([]);
     } finally {
       setIsLoading(false);
     }
@@ -28,7 +28,7 @@ const useNotesApi = (serverUrl) => {
     try {
       await axios.post(serverUrl, newNote);
       setCatchedError(null);
-      fetchData(serverUrl);
+      fetchNotes(serverUrl);
     } catch (err) {
       setCatchedError(err.message);
     }
@@ -38,7 +38,7 @@ const useNotesApi = (serverUrl) => {
     try {
       await axios.put(`${serverUrl}/${id}`, updatedNote);
       setCatchedError(null);
-      fetchData(serverUrl);
+      fetchNotes(serverUrl);
     } catch (err) {
       setCatchedError(err.message);
     }
@@ -48,7 +48,7 @@ const useNotesApi = (serverUrl) => {
     try {
       await axios.delete(`${serverUrl}/${id}`);
       setCatchedError(null);
-      fetchData(serverUrl);
+      fetchNotes(serverUrl);
     } catch (err) {
       setCatchedError(err.message);
     }
@@ -59,7 +59,7 @@ const useNotesApi = (serverUrl) => {
   };
 
   return {
-    data,
+    fetchedNotes,
     catchedError,
     isLoading,
     resetError,

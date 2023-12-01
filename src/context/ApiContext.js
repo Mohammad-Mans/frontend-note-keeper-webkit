@@ -1,11 +1,13 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import useNotesApi from "../hooks/useNotesApi";
 
 const ApiContext = createContext({});
 
 export const ApiProvider = ({ api, children }) => {
+  const [filteredNotes, setFilteredNotes] = useState(null);
+
   const {
-    data,
+    fetchedNotes,
     catchedError,
     isLoading,
     resetError,
@@ -22,20 +24,32 @@ export const ApiProvider = ({ api, children }) => {
     deleteNote(noteId);
   };
 
-  const handleCreate = (note) =>{
+  const handleCreate = (note) => {
     createNote(note);
-  }
+  };
+
+  const handleSearch = (search) => {
+    const filtered = fetchedNotes.filter(
+      (note) =>
+        note.title.toLowerCase().includes(search.toLowerCase()) ||
+        note.content.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setFilteredNotes(filtered);
+  };
 
   return (
     <ApiContext.Provider
       value={{
-        data,
+        fetchedNotes,
+        filteredNotes,
         catchedError,
         isLoading,
         resetError,
         handleCreate,
         handleUpdate,
         handleDelete,
+        handleSearch,
       }}
     >
       {children}
