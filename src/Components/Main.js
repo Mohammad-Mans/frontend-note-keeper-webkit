@@ -1,26 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Main.css";
 import AddNotesField from "./AddNotesField";
 import Notes from "./Notes";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import useNotesApi from "../hooks/useNotesApi";
 import { CircularProgress } from "@mui/material";
+import ApiContext from "../context/ApiContext";
 
 function Main({ filter }) {
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState(null);
 
-  const {
-    data,
-    catchedError,
-    isLoading,
-    resetError,
-    createNote,
-    updateNote,
-    deleteNote,
-  } = useNotesApi(process.env.REACT_APP_SERVER_URL + "/notes");
+  const { data, catchedError, resetError, isLoading } = useContext(ApiContext);
 
   useEffect(() => {
     setNotes(data);
@@ -47,17 +39,7 @@ function Main({ filter }) {
     }
   }, [filter, notes]);
 
-  function handleAddNote(newNote) {
-    createNote(newNote);
-  }
-
-  function handleDeleteNote(noteId) {
-    deleteNote(noteId);
-  }
-
-  function handleUpdateNote(noteId, updatedNote) {
-    updateNote(noteId, updatedNote);
-  }
+  function handleAddNote(newNote) {}
 
   return (
     <main className={`main ${isLoading ? "loading" : ""}`}>
@@ -65,11 +47,7 @@ function Main({ filter }) {
       {isLoading && <CircularProgress className="loading" />}
 
       {!isLoading && !catchedError && (
-        <Notes
-          notes={filteredNotes ? filteredNotes : notes}
-          onDeleteNote={handleDeleteNote}
-          onUpdateNote={handleUpdateNote}
-        />
+        <Notes notes={filteredNotes ? filteredNotes : notes} />
       )}
 
       <ToastContainer />

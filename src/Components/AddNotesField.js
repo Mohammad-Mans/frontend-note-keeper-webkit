@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./AddNotesField.css";
+import ApiContext from "../context/ApiContext";
 
-function AddNotesField({ onAddNote }) {
+function AddNotesField() {
   const [expanded, setExpanded] = useState(false);
   const [note, setNote] = useState({ title: "", content: "" });
+  
+  const {handleCreate} = useContext(ApiContext);
 
   const handleInputClick = () => {
     setExpanded(true);
   };
 
   function handleAdd (){
-    onAddNote(note)
+    handleCreate(note)
     setExpanded(false);
     setNote({ title: "", content: "" });
   };
