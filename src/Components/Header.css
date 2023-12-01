@@ -49,3 +49,19 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .main-header {
+    > .search-bar {
+      width: 350px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .main-header {
+    > h1 {
+      display: none;
+    }
+  }
+}

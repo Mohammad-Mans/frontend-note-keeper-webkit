@@ -74,3 +74,11 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .update-overlay {
+    > .update-dialog {
+      width: 350px;
+    }
+  }
+}

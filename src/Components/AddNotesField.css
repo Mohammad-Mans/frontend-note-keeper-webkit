@@ -57,3 +57,9 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .add-notes-field {
+    width: 350px;
+  }
+}
