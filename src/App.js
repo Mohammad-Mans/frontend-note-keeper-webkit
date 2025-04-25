@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <DialogProvider>
-        <ApiProvider api={process.env.REACT_APP_SERVER_URL + "/notes"}>
+        <ApiProvider api={process.env.SERVER_URL + "/notes"}>
           <Header />
           <Main />
 
