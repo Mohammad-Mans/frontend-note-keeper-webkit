@@ -1,4 +1,4 @@
-# My Note Keeper – Frontend
+# My Note Keeper 📝 – Frontend
 
 This is the **frontend part** of the [My Note Keeper](https://note-keeper-mo.vercel.app/) project — a full-stack note-taking app built with **React.js** and **MUI** on the frontend, and **Node.js**, **Express.js**, and **MongoDB** on the backend.
 
