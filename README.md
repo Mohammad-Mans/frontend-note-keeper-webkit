@@ -49,6 +49,8 @@ npm start
 This runs the app in development mode.
 Open http://localhost:3000 to view it in the browser.
 
+---
+
 ## 📦 Available Scripts
 In the project directory, you can run:
 
@@ -60,7 +62,9 @@ In the project directory, you can run:
 
 - npm run eject → Ejects the app (use with caution).
 
-For more details, check the Create React App documentation.
+For more details, check the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+--- 
 
 ## 🌐 Backend Details
 - Backend repository: [my-note-keeper-backend](https://github.com/Mohammad-Mans/my-note-keeper-backend)
@@ -69,8 +73,12 @@ For more details, check the Create React App documentation.
 
 - Backend deployment: Renderer (free tier)
   
+---
+
 ## :stars: Acknowledgment
 Special thanks to [**Foothill Technology Solutions**](https://www.foothillsolutions.com/) for the opportunity to work on this project during my internship. The experience and knowledge gained have been invaluable.
+
+---
 
 ## 🤝 Contributing
 Feel free to open issues or submit pull requests if you have improvements or bug fixes!
